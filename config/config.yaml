@@ -1,0 +1,34 @@
+astra_db:
+  collection_name: "ecommdata"       # Name of the vector collection in Astra DB where embeddings will be stored or retrieved.
+
+embedding_model:
+  provider: "google"                    # Provider of the embedding model (Google in this case, for Gemini / PaLM API).
+  model_name: "models/text-embedding-004"  # Specific embedding model used to convert text into vector form for similarity search.
+
+retriever:
+  top_k: 3                              # When doing similarity search, return the top 3 most similar documents (retriever will return these from vector DB).
+
+llm:
+  provider: "google"                    # Language model provider (again, Google — meaning you'll use Gemini Pro for generation).
+  model_name: "gemini-1.5-pro"          # Actual LLM model name used to generate responses in chat or process text (e.g., in RAG pipeline).
+
+
+
+# """
+# Your config.yaml file is used to store configuration settings in a clean, centralized, and editable way instead of hardcoding them in Python files. This is a best practice in production-level and modular applications like LangChain or any AI project
+
+# Why You’ve Written This File
+# You wrote this to:
+# Avoid hardcoding important values like model names, vector store names, or retrieval settings.
+# Make your codebase cleaner, easier to maintain, and easily configurable.
+# Let others change settings without touching Python code.
+# Allow better project structure in your LangChain, RAG, or AI agent system.
+
+# Pro Tip:
+# As you scale, this setup will help you:
+# Switch between different vector stores (like FAISS vs AstraDB).
+# Easily compare performance of different embedding models.
+# Adjust how many documents your retriever returns.
+# Swap Gemini for GPT or Claude, just by editing YAML — no code change needed.
+
+# """
