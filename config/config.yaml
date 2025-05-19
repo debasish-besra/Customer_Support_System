@@ -1,5 +1,5 @@
 astra_db:
-  collection_name: "ecommdata"       # Name of the vector collection in Astra DB where embeddings will be stored or retrieved.
+  collection_name: "ecommercedata"       # Name of the vector collection in Astra DB where embeddings will be stored or retrieved.
 
 embedding_model:
   provider: "google"                    # Provider of the embedding model (Google in this case, for Gemini / PaLM API).

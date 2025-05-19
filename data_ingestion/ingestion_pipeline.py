@@ -128,13 +128,11 @@ class DataIngestion:
         collection_name=self.config["astra_db"]["collection_name"]  # Get collection name from config.yaml
 
         # Initialize AstraDB vector store with embedding model
-        vstore = AstraDBVectorStore(
-            embedding= self.model_loader.load_embeddings(), # Load embedding model dynamically
-            collection_name=collection_name,
-            api_endpoint=self.db_api_endpoint,
-            token=self.db_application_token,
-            namespace=self.db_keyspace,
-        )
+        vstore = AstraDBVectorStore(embedding= self.model_loader.load_embeddings(),
+                                    collection_name=collection_name,
+                                    api_endpoint=self.db_api_endpoint,
+                                    token=self.db_application_token,
+                                    namespace=self.db_keyspace)
 
         inserted_ids = vstore.add_documents(documents)  # Store documents in AstraDB
         print(f"Successfully inserted {len(inserted_ids)} documents into AstraDB.")
