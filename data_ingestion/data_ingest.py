@@ -20,7 +20,7 @@ os.environ["ASTRA_DB_KEYSPACE"] = ASTRA_DB_KEYSPACE
 class ingest_data:
     def __init__(self):
         print("data ingestion class has being initialized...")
-        self.embeddings = GoogleGenerativeAIEmbeddings(model="model/text-embedding-004")
+        self.embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
         self.data_converter = data_converter()
 
     def data_ingestion(self, status):
@@ -34,14 +34,19 @@ class ingest_data:
         storage = status
 
         if storage == None:
-            docs = self.data_converter.data_transformation
+            docs = self.data_converter.data_transformation()
             inserted_ids = vstore.add_documents(docs)
             print(inserted_ids)
         else:
             return vstore
         
-        return vstore.inserted_ids
+        return vstore, inserted_ids
 
 
 if __name__ == '__main__':
-    data_ingestion = ingest_data()
+    ingest_data = ingest_data()
+    vstore,inserted_ids = ingest_data.data_ingestion("Not None")
+    # print(f"\nInserted {len(inserted_ids)} documents.")
+    results = vstore.similarity_search("Can you tell me the low budget headphone")
+    for res in results:
+        print(f"{res.page_content} {res.metadata}")

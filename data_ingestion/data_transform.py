@@ -30,8 +30,8 @@ class data_converter:
             metadata = {"product_name": entry["product_name"], "product_rating": entry["product_rating"], "product_summary": entry["product_summary"], "product_review": entry["product_review"]}
             doc = Document(page_content=entry["product_review"], metadata = metadata)
             docs.append(doc)
-        print(docs[0])
-        # return docs
+        # print(docs[0])
+        return docs
     
 
 if __name__ == '__main__':
